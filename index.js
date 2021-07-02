@@ -1,33 +1,32 @@
 require('dotenv').config();
 const puppeteer = require('puppeteer');
 
-(async () => {
-  const browser = await puppeteer.launch({
-    headless: false,
-  });
+const beatTime =  async () => {
+  const browser = await puppeteer.launch(
+    { headless: false }
+  );
   const page = await browser.newPage();
-  await page.goto('https://unsplash.com/');
-
-  // - Acessa a página de login
-  await page.click('[href="/login"]');
-
-  // Troque os valores de process.env.UNSPLASH_EMAIL e process.env.UNSPLASH_PASS pelo seu login e senha :)
-  await page.type('[name="user[email]"]', process.env.UNSPLASH_EMAIL)
-  await page.type('#user_password', process.env.UNSPLASH_PASS)
-
-  await page.click('[type="submit"]')
-
-  await page.waitForNavigation();
-
-  // ACESSAR essa pagina
-  await page.goto('https://unsplash.com/photos/LzWXPcJg7lk');
-
-  // Like nessa coisa
-  await page.click('[title="Like photo"]')
-
+  await page.goto(`${process.env.SITE_URL}`);
   
+  await page.waitForNavigation();
+  await page.waitForNavigation();
+  
+  await page.type('#userNameInput', process.env.SITE_LOGIN)
+  await page.type('#passwordInput', process.env.SITE_PASS)
 
+  await page.click('#submitButton')
+  
+  await page.waitForNavigation();
+  await page.waitForNavigation(); 
 
+  console.log('Caregandoo...')
+
+  const selectCSSButton = '#Freq > div.sapMTileContent > div.sapMStdTileTopRow';
+  await page.waitForSelector(selectCSSButton);
+
+  await page.click(selectCSSButton);
+  console.log('Seu ponto foi batido');
 
   // await browser.close();
-})();
+};
+beatTime();
