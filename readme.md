@@ -86,6 +86,8 @@ To update the image that appears in the notification you just need to update the
 
 ## Contributions
 
+- Mario Souto [@omariosouto](https://github.com/omariosouto) ([Basic project](https://github.com/omariosouto/login-com-puppeteer))
+- Mikael Vinhas  [@mikaelvinhas](https://www.linkedin.com/in/mikael-vinhas-89b637176/)
 - Pedro Magnus [@magnuspedro](https://github.com/magnuspedro)
 - Rafael Omodei [@rafaelomodei](https://github.com/rafaelomodei)
 
