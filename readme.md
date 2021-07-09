@@ -2,23 +2,36 @@
 
 In order not to have to log into the company's portal every day, I had the idea of creating a script that does this, preventing me from forgetting to punch in the clock.
 
-## objective
+## Goals
 
-- [x] Create a script to log into the company portal.
-- [x] Create a script to hit the spot 
-- [x] Check if it's a business day (if I have work on that day)
-- [x] Notify status (has been hit or not) on desktop
-  - [x] Test on Ubuntu (20.04)
-  - [ ] Test on Windows
-  - [ ] Test on MacOS
-- [ ] Create exception handling
-- [ ] Try at least 3 times if there is an error
-- [ ] Create a script (cron) to boot at the start and end times of the workday
+- [x] Create a script to log into the company portal;
+- [x] Create a script to hit the spot;
+- [x] Check if it's a business day (if I have work on that day);
+- [x] Notify status (has been hit or not) on desktop:
+  - [x] Test on Ubuntu (20.04);
+  - [ ] Test on Windows;
+  - [ ] Test on MacOS;
+- [ ] Create exception handling;
+- [ ] Try at least 3 times if there is an error;
+- [ ] Create a script (cron) to boot at the start and end times of the workday.
+
+### Extra Goals
+
+- [ ] Add test;
+- [ ] Add Eslint and Prettier;
+- [ ] Add commit pattern and validation before commit and push;
+- [ ] Refactor to TypeScript;
+- [ ] Leave the hit point script generic;
+- [ ] Create installer (.deb, .exe ...);
+- [ ] Create interface for configuration (Update image, login, pass ...).
 
 ## Environment Variables
 
 Add your application configuration to your .env file in the root of your project:
 ```
+## Environment
+NODE_ENV=DEVELOPMENT
+
 #Credentials
 SITE_LOGIN= your login on company portal
 SITE_PASS= your password on company portal
