@@ -93,12 +93,13 @@ To update the image that appears in the notification you just need to update the
 
 :bust_in_silhouette: Jecé Xavier
 
-- LinkedIn  [@jecexavier](https://www.linkedin.com/in/xavierjece/)
-- GitHub    [@jecexavier](https://github.com/XavierJece)
+- LinkedIn  [@xavierjece](https://www.linkedin.com/in/xavierjece/)
+- GitHub    [@xavierjece](https://github.com/XavierJece)
 - Instagram [@jecexavier](https://www.instagram.com/jecexavier/)
 
 ## Contributions
 
+- Higor Oliveira [@utoliveira](https://github.com/utoliveira)
 - Mario Souto [@omariosouto](https://github.com/omariosouto) ([Basic project](https://github.com/omariosouto/login-com-puppeteer))
 - Mikael Vinhas  [@mikaelvinhas](https://www.linkedin.com/in/mikael-vinhas-89b637176/)
 - Pedro Magnus [@magnuspedro](https://github.com/magnuspedro)
