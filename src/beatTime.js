@@ -1,8 +1,11 @@
 const puppeteer = require('puppeteer');
 
+const UnderDevelopment = `${process.env.NODE_ENV}` === 'DEVELOPMENT' ? true: false;
+
 const beatTime =  async () => {
+
   const browser = await puppeteer.launch(
-    { headless: false }
+    { headless: !UnderDevelopment }
   );
   const page = await browser.newPage();
   await page.goto(`${process.env.SITE_URL}`);
@@ -24,7 +27,10 @@ const beatTime =  async () => {
   await page.waitForSelector(selectCSSButton);
 
   await page.click(selectCSSButton);
-  // await browser.close();
+
+  if(!UnderDevelopment){
+    await browser.close();
+  }
 };
 
 
