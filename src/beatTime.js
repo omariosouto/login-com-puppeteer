@@ -1,4 +1,3 @@
-require('dotenv').config();
 const puppeteer = require('puppeteer');
 
 const beatTime =  async () => {
@@ -19,14 +18,21 @@ const beatTime =  async () => {
   await page.waitForNavigation();
   await page.waitForNavigation(); 
 
-  console.log('Caregandoo...')
+  console.log('Loading...')
 
   const selectCSSButton = '#Freq > div.sapMTileContent > div.sapMStdTileTopRow';
   await page.waitForSelector(selectCSSButton);
 
   await page.click(selectCSSButton);
-  console.log('Seu ponto foi batido');
+  console.log('Your point has been hit!! :D');
 
   // await browser.close();
 };
-beatTime();
+
+
+module.exports = {
+  beatTime
+}
+
+// Success => #__view3
+//  Error1 (beated) (Registro Negado! Intervalo entre marcação menor que 10 minutos) => #__view3 

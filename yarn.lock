@@ -291,6 +291,11 @@ duplexer3@^0.1.4:
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
   integrity sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=
 
+eferiado@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/eferiado/-/eferiado-1.1.5.tgz#8ffd696eecc3f5b31f0e49b4217f090e24ab4ffd"
+  integrity sha512-gi0xGM9Wvkho4CVvNZlj1UHDhhIi9/rd+DIZAFJuYspKM4mbxffgp+A4+yU1ZlEk2RuWmCp+O53LCWOR1cbSFQ==
+
 emoji-regex@^7.0.1:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-7.0.3.tgz#933a04052860c85e83c122479c4748a8e4c72156"
