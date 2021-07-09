@@ -24,8 +24,6 @@ const beatTime =  async () => {
   await page.waitForSelector(selectCSSButton);
 
   await page.click(selectCSSButton);
-  console.log('Your point has been hit!! :D');
-
   // await browser.close();
 };
 

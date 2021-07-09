@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { beatTime } = require('./beatTime');
 const { iHaveJob } = require('./getInfoDay');
+const { notifyMe } = require('./notification');
 
 //State of company
 const ufCompany = 'SP';
@@ -9,13 +10,17 @@ const ufCompany = 'SP';
 const today = new Date();
 // const tomorrow = new Date(today.setDate(today.getDate() + 0));
 
+let message;
+
 if(iHaveJob(today, ufCompany)){
   console.log(`I have a job!!`)
   beatTime();
+  message = 'Your point has been hit!! :D' 
 }else{
-console.log(`Today not need to beat time!! :D`);
+   message = `Today not need to beat time!! :D`; 
 }
 
-
+console.log(message);
+notifyMe(message);
 
 
