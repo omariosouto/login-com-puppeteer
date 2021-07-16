@@ -1,28 +1,31 @@
-require('dotenv').config();
-const { beatTime } = require('./beatTime');
-const { iHaveJob } = require('./getInfoDay');
-const { notifyMe } = require('./notification');
+require("dotenv").config();
+const { beatTime } = require("./beatTime");
+const { iHaveJob } = require("./getInfoDay");
+const { notifyMe } = require("./notification");
 
 const init = async () => {
+  const message = {
+    success: "Your point has been hit!! 😜",
+    failure: "An error occurred, I couldn't register the point 🥲",
+    dayOff: "This is day off, doesn't need to beat point!! 😁",
+  };
+
   //State of company
-  const ufCompany = 'SP';
+  const ufCompany = "SP";
 
   //Get date today
   const today = new Date();
   // const tomorrow = new Date(today.setDate(today.getDate() + 0));
 
-  let message;
+  let status = "dayOff";
 
-  if(iHaveJob(today, ufCompany)){
-    console.log(`I have a job!!`)
-    await beatTime();
-    message = 'Your point has been hit!! :D' 
-  }else{
-    message = `Today not need to beat time!! :D`; 
+  if (iHaveJob(today, ufCompany)) {
+    console.log(`I have a job!!`);
+    status = await beatTime();
   }
 
-  console.log(message);
-  notifyMe(message);
-}
+  console.log(message[status]);
+  notifyMe(message[status]);
+};
 
 init();
