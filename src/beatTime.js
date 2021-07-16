@@ -5,7 +5,7 @@ const UnderDevelopment =
 
 const TIMEOUT = process.env.TIMEOUT_SECOND
   ? parseInt(process.env.TIMEOUT_SECOND) * 1000
-  : 3000; // 3s
+  : 10000; // 10s
 const TOTAL_ATTEMPTS = process.env.TOTAL_ATTEMPTS
   ? parseInt(process.env.TOTAL_ATTEMPTS)
   : 3;
@@ -43,6 +43,13 @@ const beatTime = async (attempt = 0) => {
     });
 
     await page.click(selectCSSButton);
+
+    const selectCSSMessage = "#__view3";
+    const modal = await page.waitForSelector(selectCSSMessage, {
+      timeout: TIMEOUT,
+    });
+
+    console.log(await page.$$(selectCSSMessage));
 
     await closeBrowser(browser);
     return "success";
