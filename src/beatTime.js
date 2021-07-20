@@ -26,6 +26,7 @@ const beatTime = async (attempt = 0) => {
     await page.waitForNavigation({ timeout: TIMEOUT });
     await page.waitForNavigation({ timeout: TIMEOUT });
 
+    //Login
     await page.type("#userNameInput", process.env.SITE_LOGIN);
     await page.type("#passwordInput", process.env.SITE_PASS);
 
@@ -36,6 +37,7 @@ const beatTime = async (attempt = 0) => {
 
     console.log("Loading...");
 
+    //Beat Point
     const selectCSSButton =
       "#Freq > div.sapMTileContent > div.sapMStdTileTopRow";
     await page.waitForSelector(selectCSSButton, {
@@ -44,12 +46,14 @@ const beatTime = async (attempt = 0) => {
 
     await page.click(selectCSSButton);
 
+    //Check message
     const selectCSSMessage = "#__view3";
-    const modal = await page.waitForSelector(selectCSSMessage, {
-      timeout: TIMEOUT,
-    });
+    await page.waitForSelector(selectCSSMessage)
+    let element = await page.$(selectCSSMessage)
+    let value = await page.evaluate(el => el.textContent, element)
 
-    console.log(await page.$$(selectCSSMessage));
+    console.log(value)
+
 
     await closeBrowser(browser);
     return "success";
