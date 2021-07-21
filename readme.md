@@ -11,8 +11,8 @@ In order not to have to log into the company's portal every day, I had the idea 
   - [x] Test on Ubuntu (20.04);
   - [ ] Test on Windows;
   - [ ] Test on MacOS;
-- [ ] Create exception handling;
-- [ ] Try at least 3 times if there is an error;
+- [x] Create exception handling;
+- [x] Try at least 3 times if there is an error;
 - [ ] Create a script (cron) to boot at the start and end times of the workday.
 
 ### Extra Goals
