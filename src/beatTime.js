@@ -16,7 +16,37 @@ const closeBrowser = async (browser) => {
   }
 };
 
-const beatTime = async (attempt = 0) => {
+const makeLogin = async (page) => {
+  await page.type("#userNameInput", process.env.SITE_LOGIN);
+  await page.type("#passwordInput", process.env.SITE_PASS);
+
+  await page.click("#submitButton");
+};
+
+const punchTheClock = async (page) => {
+  const selectCSSButton = "#Freq > div.sapMTileContent > div.sapMStdTileTopRow";
+
+  await page.waitForSelector(selectCSSButton, {
+    timeout: TIMEOUT,
+  });
+
+  await page.click(selectCSSButton);
+};
+
+const getResponseMessage = async (page) => {
+  const selectCSSMessage = "#__view3";
+  await page.waitForSelector(selectCSSMessage);
+  let element = await page.$(selectCSSMessage);
+  return page.evaluate((el) => el.textContent, element);
+};
+
+const registeredHour = (message) => {
+  const successMessage = "Registro Efetuado";
+
+  return message.indexOf(successMessage) !== -1;
+};
+
+const punchAClock = async (attempt = 0) => {
   const browser = await puppeteer.launch({ headless: !UnderDevelopment });
 
   try {
@@ -26,53 +56,39 @@ const beatTime = async (attempt = 0) => {
     await page.waitForNavigation({ timeout: TIMEOUT });
     await page.waitForNavigation({ timeout: TIMEOUT });
 
-    //Login
-    await page.type("#userNameInput", process.env.SITE_LOGIN);
-    await page.type("#passwordInput", process.env.SITE_PASS);
-
-    await page.click("#submitButton");
+    await makeLogin(page);
 
     await page.waitForNavigation({ timeout: TIMEOUT });
     await page.waitForNavigation({ timeout: TIMEOUT });
 
     console.log("Loading...");
 
-    //Beat Point
-    const selectCSSButton =
-      "#Freq > div.sapMTileContent > div.sapMStdTileTopRow";
-    await page.waitForSelector(selectCSSButton, {
-      timeout: TIMEOUT,
-    });
+    await punchTheClock(page);
 
-    await page.click(selectCSSButton);
-
-    //Check message
-    const selectCSSMessage = "#__view3";
-    await page.waitForSelector(selectCSSMessage)
-    let element = await page.$(selectCSSMessage)
-    let value = await page.evaluate(el => el.textContent, element)
-
-    console.log(value)
-
+    const responseMessage = await getResponseMessage(page);
 
     await closeBrowser(browser);
-    return "success";
+
+    return {
+      status: registeredHour(responseMessage) ? "success" : "failure",
+      message: responseMessage,
+    };
   } catch (error) {
     console.log("ERROR", error.message);
 
     await closeBrowser(browser);
 
     if (attempt < TOTAL_ATTEMPTS - 1) {
-      return bot(attempt + 1);
+      return punchAClock(attempt + 1);
     } else {
-      return "failure";
+      return {
+        status: "failure",
+        message: error.message,
+      };
     }
   }
 };
 
 module.exports = {
-  beatTime,
+  punchAClock,
 };
-
-// Success => #__view3
-//  Error1 (beated) (Registro Negado! Intervalo entre marcação menor que 10 minutos) => #__view3
