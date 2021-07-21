@@ -1,4 +1,4 @@
-# Bot to hit the spot
+# Bot to punch a clock
 
 In order not to have to log into the company's portal every day, I had the idea of creating a script that does this, preventing me from forgetting to punch in the clock.
 
